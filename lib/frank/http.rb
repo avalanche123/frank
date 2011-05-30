@@ -1,0 +1,1 @@
+require 'frank/http/request_factory'
