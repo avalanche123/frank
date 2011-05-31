@@ -1,7 +1,5 @@
 module Frank::HTTP
   class Request
-    attr_reader :body
-
     def initialize(method)
       @method = method
     end

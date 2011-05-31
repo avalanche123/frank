@@ -21,16 +21,12 @@ module Frank::HTTP
             accept 'text/html'
           end
         end
-      end
-    end
 
-    ["POST", "PUT", "DELETE", "PATCH"].each do |method|
-      context "when method is non-safe" do
         it "sets request body to block's returned string" do
-          request = RequestFactory.create_request method, do
+          request.should_receive(:body=).with('foo=bar&baz=quiz')
+          RequestFactory.create_request method, do
             'foo=bar&baz=quiz'
           end
-          request.body.should eq('foo=bar&baz=quiz')
         end
       end
     end

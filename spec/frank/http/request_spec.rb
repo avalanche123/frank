@@ -6,8 +6,7 @@ module Frank::HTTP
       it "sets body for all acceptable methods" do
         ["GET", "POST", "PUT", "DELETE", "HEAD", "PATCH", "OPTIONS"].each do |method|
           request = Request.new(method)
-          request.body = 'body'
-          request.body.should eq('body')
+          expect { request.body = 'body' }.to_not raise_error(RequestCannotHaveBodyError)
         end
       end
 
