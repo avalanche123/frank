@@ -8,7 +8,7 @@ module Frank::HTTP
 
     def body=(body)
       if @method === "TRACE"
-        raise TraceRequestBody unless body.nil?
+        raise RequestCannotHaveBodyError unless body.nil?
       end
       @body = body
     end

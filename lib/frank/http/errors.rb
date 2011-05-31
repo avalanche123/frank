@@ -1,4 +1,4 @@
 module Frank::HTTP
-  class TraceRequestBody < ArgumentError
+  class RequestCannotHaveBodyError < ArgumentError
   end
 end
