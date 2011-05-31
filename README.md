@@ -10,11 +10,13 @@ A no nonsense dsl for making http requests in ruby
 ``` ruby
 require 'frank'
 
-get '/' do
+request = get '/' do
   host 'www.example.com'
   accept 'application/xml'
   user_agent 'Frank Demo'
 end
+
+puts request.to_s
 ```
 
 results in:
@@ -31,16 +33,16 @@ User-Agent: Frank Demo
 ``` ruby
 require 'frank'
 
-post '/log-in' do
+request = post '/log-in' do
   host 'www.example.com'
   accept 'application/xml'
   content_type 'application/x-www-form-urlencoded'
   user_agent 'Frank Demo'
-  {
-    :login => 'username',
-    :password => 'password'
-  }
+
+  { :login => 'username', :password => 'password' }
 end
+
+puts request.to_s
 ```
 
 results in:
