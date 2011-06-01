@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Frank::HTTP
   describe Request do
-    describe "#body" do
+    describe "#body=" do
       it "sets body for all acceptable methods" do
         ["GET", "POST", "PUT", "DELETE", "HEAD", "PATCH", "OPTIONS", "CONNECT"].each do |method|
           request = Request.new(method)
