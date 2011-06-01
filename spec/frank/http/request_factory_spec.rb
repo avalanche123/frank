@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Frank::HTTP
   describe RequestFactory do
-    ["GET", "POST", "PUT", "DELETE", "HEAD", "PATCH", "OPTIONS", "TRACE"].each do |method|
+    ["GET", "POST", "PUT", "DELETE", "HEAD", "PATCH", "OPTIONS", "TRACE", "CONNECT"].each do |method|
       context "when request creation succedes" do
         let (:request) { mock(Request).as_null_object }
 

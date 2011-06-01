@@ -1,6 +1,6 @@
 module Frank::HTTP
   class RequestFactory
-    @allowed_methods ||= ["GET", "POST", "PUT", "DELETE", "HEAD", "PATCH", "OPTIONS", "TRACE"]
+    @allowed_methods ||= ["GET", "POST", "PUT", "DELETE", "HEAD", "PATCH", "OPTIONS", "TRACE", "CONNECT"]
 
     module ClassMethods
       def create_request(method, &block)
