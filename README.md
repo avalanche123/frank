@@ -35,7 +35,7 @@ require 'frank'
 
 request = post '/log-in' do
   host 'www.example.com'
-  accept 'application/xml', 'application/xhtml+xml', h('text/html', :q => 0.9), h('text/plain', :q => 0.8), 'image/png', h('*/*', :q => 0.5)
+  accept 'application/xml', 'application/xhtml+xml', m('text/html', :q => 0.9), m('text/plain', :q => 0.8), 'image/png', m('*/*', :q => 0.5)
   content_type 'application/x-www-form-urlencoded'
   user_agent 'Frank Demo'
 

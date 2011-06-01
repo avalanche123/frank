@@ -29,8 +29,8 @@ module Frank::HTTP
       s
     end
 
-    def h(header, attributes = {})
-      Header.new(header, attributes)
+    def m(header, attributes = {})
+      MediaRange.new(header, attributes)
     end
   end
 end

@@ -52,17 +52,17 @@ module Frank::HTTP
       end
     end
 
-    describe "#h" do
+    describe "#m" do
       let(:request) { Request.new("GET") }
 
       it "calls Frank::HTTP::Header#new with header and attributes" do
-        Header.should_receive(:new).with('header_value', {:q => 0.9})
-        request.h('header_value', {:q => 0.9})
+        MediaRange.should_receive(:new).with('header_value', {:q => 0.9})
+        request.m('header_value', {:q => 0.9})
       end
 
       it "calls Frank::HTTP::Header#new with just header" do
-        Header.should_receive(:new).with('header_value', {})
-        request.h('header_value')
+        MediaRange.should_receive(:new).with('header_value', {})
+        request.m('header_value')
       end
     end
 
@@ -72,7 +72,7 @@ module Frank::HTTP
         request.path = '/'
         request.instance_eval do
           host 'www.example.com'
-          accept 'application/xml', 'application/xhtml+xml', h('text/html', :q => 0.9), h('text/plain', :q => 0.8), 'image/png', h('*/*', :q => 0.5)
+          accept 'application/xml', 'application/xhtml+xml', m('text/html', :q => 0.9), m('text/plain', :q => 0.8), 'image/png', m('*/*', :q => 0.5)
           user_agent 'Frank Demo'
         end
         request.to_s.should eq(<<-eol

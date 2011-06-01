@@ -1,5 +1,5 @@
 module Frank::HTTP
-  class Header
+  class MediaRange
     def initialize(value, attributes={})
       @value, @attributes = value, attributes
     end
