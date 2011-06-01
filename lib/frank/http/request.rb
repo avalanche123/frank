@@ -21,6 +21,14 @@ module Frank::HTTP
       @headers[match[1].to_sym] = args
     end
 
+    def to_s
+      s = "#{@method} #{@path} HTTP/1.1\r\n"
+      @headers.each do |name, value|
+        s << "#{name.to_s.split(/[\-\_]/).map { |s| s.capitalize }.join("-")}: #{value.to_s}\r\n"
+      end
+      s
+    end
+
     def h(header, attributes = {})
       Header.new(header, attributes)
     end

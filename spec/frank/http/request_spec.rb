@@ -76,10 +76,10 @@ module Frank::HTTP
           user_agent 'Frank Demo'
         end
         request.to_s.should eq(<<-eol
-GET / HTTP/1.1
-Host: www.example.com
-Accept: application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5
-User-Agent: Frank Demo
+GET / HTTP/1.1\r
+Host: www.example.com\r
+Accept: application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5\r
+User-Agent: Frank Demo\r
 eol
 )
       end
