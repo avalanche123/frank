@@ -10,6 +10,7 @@ module Frank::HTTP
         request
       end
     end
+
     extend ClassMethods
   end
 end
