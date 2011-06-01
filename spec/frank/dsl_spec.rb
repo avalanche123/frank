@@ -10,11 +10,11 @@ module Frank
      :head, :options, :trace, :connect].each do |method|
       describe "##{method}" do
         it "delegates to Frank::HTTP::RequestFactory.create_request" do
-          block = lambda {|a, b|}
+          path, block = '/', lambda {}
           Frank::HTTP::RequestFactory.should_receive(:create_request).with(
-            method.to_s.upcase, &block
+            method.to_s.upcase, path, &block
           )
-          @dsl.__send__ method, &block
+          @dsl.__send__ method, path, &block
         end
       end
     end
