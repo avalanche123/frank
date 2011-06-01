@@ -12,8 +12,9 @@ module Frank::HTTP
       @body = body
     end
 
-    def method_missing(method, args)
-      super unless match = /(\w+)\=/.match(method)
+    def method_missing(method, *args)
+      super unless match = /^(\w+)$/.match(method)
+      raise ArgumentError if args.empty?
       args = args.map { |h| h.to_s }.join(",") if args.respond_to?(:map)
       @headers[match[1].to_sym] = args
     end

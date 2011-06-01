@@ -19,33 +19,35 @@ module Frank::HTTP
     describe "#method_missing" do
       let(:request) { Request.new("GET") }
 
-      context "when method is like (\w+)\=" do
+      context "when method is like /^(\w+)$/" do
         let(:headers) {
           request.instance_variable_get :@headers
         }
 
         context "when one value given" do
           it "sets header" do
-            request.accept = 'text/html'
+            request.accept 'text/html'
             headers[:accept].should eq('text/html')
           end
         end
 
         context "when multiple values given" do
           it "sets header" do
-            request.accept = 'text/html', 'text/plain'
+            request.accept 'text/html', 'text/plain'
             headers[:accept].should eq('text/html,text/plain')
           end
         end
 
         it "raises when no header value is given" do
-          expect { request.__send__(:accept=) }.to raise_error(ArgumentError)
+          expect { request.__send__(:accept) }.to raise_error(ArgumentError)
         end
       end
 
-      context "when method is not like (\w+)\=" do
+      context "when method is not like /^(\w+)$/" do
         it "raises NoMethodError" do
-          expect { request.unknown(nil) }.to raise_error(NoMethodError)
+          [:unknown=, :unknown?, :unknown!].each do |method|
+            expect { request.__send__(method) }.to raise_error(NoMethodError)
+          end
         end
       end
     end
