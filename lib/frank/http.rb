@@ -1,7 +1,7 @@
 module Frank::HTTP
+  autoload :Request, 'frank/http/request'
+  autoload :RequestFactory, 'frank/http/request_factory'
+  autoload :MediaRange, 'frank/http/media_range'
 end
 
 require 'frank/http/errors'
-require 'frank/http/request'
-require 'frank/http/request_factory'
-require 'frank/http/media_range'

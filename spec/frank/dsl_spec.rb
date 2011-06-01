@@ -3,7 +3,7 @@ require 'spec_helper'
 module Frank
   describe DSL do
     before(:each) do
-      @dsl = Class.new do; include Frank::DSL; end;
+      @dsl = Class.new { include Frank::DSL }
     end
 
     [:get, :post, :put, :delete, :patch,
