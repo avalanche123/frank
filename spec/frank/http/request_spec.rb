@@ -65,5 +65,24 @@ module Frank::HTTP
         request.h('header_value')
       end
     end
+
+    describe "#to_s" do
+      it "gets http representation of request" do
+        request = Request.new("GET")
+        request.path = '/'
+        request.instance_eval do
+          host 'www.example.com'
+          accept 'application/xml', 'application/xhtml+xml', h('text/html', :q => 0.9), h('text/plain', :q => 0.8), 'image/png', h('*/*', :q => 0.5)
+          user_agent 'Frank Demo'
+        end
+        request.to_s.should eq(<<-eol
+GET / HTTP/1.1
+Host: www.example.com
+Accept: application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5
+User-Agent: Frank Demo
+eol
+)
+      end
+    end
   end
 end

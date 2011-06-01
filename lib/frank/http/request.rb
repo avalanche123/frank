@@ -1,5 +1,7 @@
 module Frank::HTTP
   class Request
+    attr_writer :path
+
     def initialize(method)
       @method = method
       @headers = {}

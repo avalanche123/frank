@@ -12,19 +12,26 @@ module Frank::HTTP
 
         it "creates request with given method" do
           block = lambda { |r| }
-          RequestFactory.create_request(method, &block)
+          RequestFactory.create_request(method, '/', &block)
         end
 
         it "evaluates block on request instance" do
           request.should_receive(:accept).with('text/html').and_return(nil)
-          RequestFactory.create_request method, do
+          RequestFactory.create_request method, '/', do
             accept 'text/html'
+          end
+        end
+
+        it "sets request path" do
+          request.should_receive(:path=).with('/')
+          RequestFactory.create_request method, '/', do
+            'foo=bar&baz=quiz'
           end
         end
 
         it "sets request body to block's returned string" do
           request.should_receive(:body=).with('foo=bar&baz=quiz')
-          RequestFactory.create_request method, do
+          RequestFactory.create_request method, '/', do
             'foo=bar&baz=quiz'
           end
         end
@@ -32,12 +39,12 @@ module Frank::HTTP
     end
 
     it "raises if no block given" do
-      expect { RequestFactory.create_request(method) }.to raise_error(ArgumentError)
+      expect { RequestFactory.create_request(method, '/') }.to raise_error(ArgumentError)
     end
   
     it "raises if invalid method given" do
       method, block = "UNKNOWN", lambda {|a, b|}
-      expect { RequestFactory.create_request(method, &block) }.to raise_error(ArgumentError)
+      expect { RequestFactory.create_request(method, '/', &block) }.to raise_error(ArgumentError)
     end
   end
 end
